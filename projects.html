@@ -12,7 +12,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="index.html">MyPortfolio</a>
+      <a class="navbar-brand fw-bold" href="index.html">Rithik Kavanakudy's Portfolio</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -41,12 +41,14 @@
       <div class="row g-4">
 
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-primary">Documentation</button>
-          <button type="button" class="btn btn-primary">Diagram</button>
-         <button type="button" class="btn btn-primary">Code</button>
+          <button type="button" class="btn btn-outline-info" onclick="filterProjects('all')">All</button>
+          <button type="button" class="btn btn-outline-info" onclick="filterProjects('Documentation')">Documentation</button>
+          <button type="button" class="btn btn-outline-info" onclick="filterProjects('Diagram')">Diagram</button>
+         <button type="button" class="btn btn-outline-info" onclick="filterProjects('Code')">Code</button>
         </div>
+
         <!-- Project 1 -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 project-item" data-category="Documentation">
           <div class="card h-100 shadow-sm border-0">
             <div class="card-header bg-primary text-white">
               <i class="bi bi-github me-1"></i></i>Project 1
@@ -70,7 +72,7 @@
         </div>
 
         <!-- Project 2 -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 project-item" data-category="Diagram">
           <div class="card h-100 shadow-sm border-0">
             <div class="card-header bg-success text-white">
               <i class="bi bi-github me-1"></i></i>Project 2
@@ -94,7 +96,7 @@
         </div>
 
         <!-- Project 3 -->
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 project-item" data-category="Code">
           <div class="card h-100 shadow-sm border-0">
             <div class="card-header bg-warning text-dark">
              <i class="bi bi-github me-1"></i></i>Project 3
@@ -121,22 +123,6 @@
     </div>
   </section>
 
-  <!-- Challenge Box -->
-  <section class="py-4">
-    <div class="container">
-      <div class="alert alert-warning" role="alert">
-        <h5 class="alert-heading"><i class="bi bi-lightbulb-fill me-2"></i>Student Challenge</h5>
-        <p class="mb-1">Can you improve this projects page? Try these:</p>
-        <ul class="mb-0">
-          <li>Add a real screenshot image to each card using <code>&lt;img class="card-img-top"&gt;</code>.</li>
-          <li>Add a <strong>filter bar</strong> at the top using Bootstrap button groups to filter by category.</li>
-          <li>Link the "View Details" button to a dedicated project detail page.</li>
-          <li>Add a <strong>GitHub icon link</strong> (<code>bi-github</code>) to each project card.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
   <!-- Footer -->
   <footer class="bg-dark text-white text-center py-3">
     <p class="mb-0">&copy; 2026 Rithik Kavanakudy's Portfolio. Built with Bootstrap 5.</p>
@@ -151,3 +137,21 @@
   </iframe>
 </body>
 </html>
+<script>
+  function filterProjects(category) {
+    const projects = document.querySelectorAll('.project-item');
+    
+    projects.forEach(project => {
+      if (category === 'all') {
+        project.style.display = 'block';
+      } else {
+        // Check if the project's data-category matches the button clicked
+        if (project.getAttribute('data-category') === category) {
+          project.style.display = 'block';
+        } else {
+          project.style.display = 'none';
+        }
+      }
+    });
+  }
+</script>

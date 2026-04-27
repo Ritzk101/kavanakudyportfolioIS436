@@ -84,34 +84,44 @@
 
         <!-- Contact Form -->
         <div class="col-md-7">
-          <h4 class="fw-bold mb-4">Send a Message</h4>
-          <form class="row g-3 needs-validation" novalidate>
+          <div class="card shadow border-0">
+          <div class="card-header bg-dark text-white py-3">
+          <h4 class="fw-bold mb-0">Send a Message</h4>
+          
+        </div>
+
+        <div class="card-body p-4">
+          <div id="successAlert" class="alert-success d-none" role="alert">
+            Message Sent!
+          </div>
+          
+          <form id="contactForm" class="row g-3 needs-validation" novalidate>
             <div class="row g-3">
               <div class="col-sm-6">
                 <label class="form-label">First Name</label>
                 <input type="text" class="form-control" placeholder="John" required/>
-                
+                <div class="invalid-feedback">Please enter your first name</div>
               </div>
               <div class="col-sm-6">
                 <label class="form-label">Last Name</label>
                 <input type="text" class="form-control" placeholder="Doe" required/>
-                
+                <div class="invalid-feedback">Please enter your last name</div>
 
               </div>
               <div class="col-12">
                 <label class="form-label">Email Address</label>
                 <input type="email" class="form-control" placeholder="john@example.com" required/>
-              
+              <div class="invalid-feedback">Please provide a valid email</div>
               </div>
               <div class="col-12">
                 <label class="form-label">Subject</label>
                 <input type="text" class="form-control" placeholder="What is this about?" required/>
-              
+                <div class="invalid-feedback">Please enter a subject</div>
               </div>
               <div class="col-12">
                 <label class="form-label">Message</label>
                 <textarea class="form-control" rows="5" placeholder="Write your message here..." required></textarea>
-              
+                <div class="invalid-feedback">Please write a message</div>
               </div>
               <div class="col-12">
                 <button type="submit" class="btn btn-primary w-100">
@@ -121,26 +131,26 @@
             </div>
           </form>
         </div>
-
+        
       </div>
     </div>
+    <div class="mt-4">
+  <h4 class="fw-bold mb-3">Location</h4>
+  <div class="card shadow border-0 p-2">
+    <div class="ratio ratio-21x9">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3091.978393526346!2d-76.7139149!3d39.2537233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c81e8a9d60613d%3A0x600129202f50f443!2sUniversity%20of%20Maryland%2C%20Baltimore%20County!5e0!3m2!1sen!2s!4v1712850000000!5m2!1sen!2s" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</div>
+
   </section>
 
-  <!-- Challenge Box -->
-  <section class="py-4">
-    <div class="container">
-      <div class="alert alert-warning" role="alert">
-        <h5 class="alert-heading"><i class="bi bi-lightbulb-fill me-2"></i>Student Challenge</h5>
-        <p class="mb-1">Make this contact page even better:</p>
-        <ul class="mb-0">
-          <li>Add <strong>form validation</strong> — mark required fields and show error messages using Bootstrap's <code>is-invalid</code> and <code>invalid-feedback</code> classes.</li>
-          <li>Add a <strong>success alert</strong> (<code>alert alert-success</code>) that shows when the form is submitted.</li>
-          <li>Replace the plain form with a Bootstrap <strong>card</strong> (<code>card shadow</code>) to give it a polished look.</li>
-          <li>Embed a <strong>Google Map</strong> using an <code>&lt;iframe&gt;</code> inside a Bootstrap responsive container below the form.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
 
   <!-- Footer -->
   <footer class="bg-dark text-white text-center py-3">
@@ -148,5 +158,27 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+  (() => {
+    'use strict'
+
+    const form = document.getElementById('contactForm')
+    const successAlert = document.getElementById('successAlert')
+
+    form.addEventListener('submit', event => {
+      // Prevent the form from actually sending/reloading the page
+      event.preventDefault()
+      event.stopPropagation()
+
+      if (form.checkValidity()) {
+        // If valid, show the success message and hide the form (optional)
+        successAlert.classList.remove('d-none');
+        form.classList.add('d-none'); 
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })()
+</script>
 </body>
 </html>
